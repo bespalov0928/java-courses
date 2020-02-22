@@ -15,6 +15,15 @@ public class Calculator{
 			this.result += param;
 		}
 	}
+	public void sub(int ... params){
+		this.result = params[0]-params[1];
+	}
+	public void div(int ... params){
+		this.result = params[0]/params[1];
+	}
+	public void mult(int ... params){
+		this.result = params[0]*params[1];
+	}
 	/*получить результат*/
 	public int getResult(){
 		return this.result;
