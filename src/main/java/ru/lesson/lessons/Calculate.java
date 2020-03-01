@@ -1,3 +1,4 @@
+package ru.lesson.lessons;
 public class Calculate{
 	
 	public static void main(String[] arg){
