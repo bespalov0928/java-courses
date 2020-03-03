@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 public class Dog implements Pet{
 	//private final String name;
 	//private final Animal animal;

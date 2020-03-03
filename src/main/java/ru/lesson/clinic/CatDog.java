@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 public class CatDog implements Pet{
 	public final Pet cat;
 	private final Pet dog;

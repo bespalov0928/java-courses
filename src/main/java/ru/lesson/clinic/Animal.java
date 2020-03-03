@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 public class Animal implements Pet{
 	
 	public String name;

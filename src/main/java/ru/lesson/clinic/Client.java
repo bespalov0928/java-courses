@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 public class Client{
 	private String id;
 	private final Pet pet;
@@ -17,4 +19,5 @@ public class Client{
 	public void setNameClient(String nameClient){
 		this.id = nameClient;
 	}
+
 }

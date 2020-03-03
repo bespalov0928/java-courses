@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 import java.util.Scanner;
 
 /*работа клиники*/
@@ -61,13 +63,17 @@ public class ClinicRunner{
 					clinic.editP(position, namePet);
 				}				
 				else if(operator.equals("delC")){
-					System.out.println("Enter position Client");
-					Integer position = Integer.valueOf(reader.next());
+					System.out.println("Enter name Client");
+					String position = reader.next();
+					//Integer.valueOf(reader.next());
 					clinic.delC(position);
 					
 				}
 				else if(operator.equals("delP")){
-					
+					System.out.println("Enter name Pet");
+					String position = reader.next();
+					//Integer.valueOf(reader.next());
+					clinic.delP(position);
 				}				
 				else if(operator.equals("show")){
 					clinic.show();

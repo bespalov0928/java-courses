@@ -1,3 +1,5 @@
+package ru.lesson.clinic;
+
 public interface Pet{
 	String getName();
 	
