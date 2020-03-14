@@ -18,10 +18,8 @@ public class Clinic{
 	}
 	
 	/*добавить клиента*/
-	public void addClient(final int position, final Client client){
+	public void addClient(final int position, final Client client) throws UserException{
 		this.clients[position] = client;
-//		System.out.println(position);
-//		System.out.println(client);
 	}
 	
 	
@@ -56,9 +54,6 @@ public class Clinic{
 			}
 			petFind = clients[i].getPet();
 			petName = petFind.getName();
-//			System.out.println(i);
-//			System.out.println(petName);
-			//System.out.println(name);
 			if(petName.equals(name)){
 				System.out.println("find client: "+clients[i]+" "+petName);
 				//return clients[i];
@@ -84,27 +79,32 @@ public class Clinic{
 	public void delC_old(Integer pos){
 		List<Client> listOfClient = new ArrayList<Client>();
 		Collections.addAll(listOfClient, clients);
-//		System.out.println(pos);
 		listOfClient.remove(pos.intValue());
-//		System.out.println(listOfClient.toString());
 		listOfClient.toArray(clients);//new Client[listOfClient.size()]);
-//		System.out.println(Arrays.toString(clients)); //[bar, baz]
 	}
-	public void delC(String name){
+	public void delC(String name) throws UserException{
 
 		for (int i = 0; i<clients.length; i++){
-			if (clients[i]==null)continue;
-			if (clients[i].getNameClient().equals(name)){
-				clients[i] = null;
+			if (clients[i]!=null) {
+				if (clients[i].getNameClient().equals(name)) {
+					clients[i] = null;
+					break;
+				}
+			}else{
+				throw new UserException("null");
 			}
 		}
 	}
-	public void delP(String name){
+	public void delP(String name) throws UserException{
 		for (int i = 0; i<clients.length; i++){
-			if (clients[i]==null)continue;
-			petFind = clients[i].getPet();
-			if (petFind.getName().equals(name)){
-				clients[i] = null;
+			if (clients[i]!=null){
+				petFind = clients[i].getPet();
+				if (petFind.getName().equals(name)) {
+					clients[i] = null;
+					break;
+				}
+			}else {
+				throw new UserException("null");
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class Clinic{
 			petName = petFind.getName();
 			System.out.println("Client:"+clientName+" Pet:"+petName);
 		}*/
-		System.out.println(clients);
+		System.out.println(Arrays.toString(clients));
 		return this.clients;
 	}
 

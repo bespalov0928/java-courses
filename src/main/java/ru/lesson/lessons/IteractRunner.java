@@ -16,19 +16,57 @@ public class IteractRunner{
 				String first = reader.next();
 				System.out.println("Enter second arg:");
 				String second = reader.next();
-				
-				
+
 				if(operator.equals("+")){
-					calc.add(Integer.valueOf(first), Integer.valueOf(second));
+					try {
+						calc.add(Integer.valueOf(first), Integer.valueOf(second));
+					}
+					catch (NumberFormatException e){
+						System.out.println(e.getMessage());
+						System.out.println("Нельзя указывать строчные символы");
+					}catch (UserException e){
+						System.out.println(e.getMessage());
+						System.out.println("please enter two args");
+					}
+
 				}
 				else if(operator.equals("-")){
-					calc.sub(Integer.valueOf(first), Integer.valueOf(second));
+					try {
+						calc.sub(Integer.valueOf(first), Integer.valueOf(second));
+					}
+					catch (NumberFormatException e){
+						System.out.println(e.getMessage());
+						System.out.println("Нельзя указывать строчные символы");
+
+					} catch (UserException e) {
+						System.out.println(e.getMessage());
+						System.out.println("please enter two args");
+					}
 				}
 				else if (operator.equals("/")){
-					calc.div(Integer.valueOf(first), Integer.valueOf(second));
+					try {
+						calc.div(Integer.valueOf(first), Integer.valueOf(second));
+					}
+					catch (NumberFormatException e){
+						System.out.println(e.getMessage());
+						System.out.println("Нельзя указывать строчные символы");
+
+					} catch (UserException e) {
+						System.out.println(e.getMessage());
+						System.out.println("please enter two args");
+					}
 				}
 				else if (operator.equals("*")){
-					calc.mult(Integer.valueOf(first), Integer.valueOf(second));
+					try {
+						calc.mult(Integer.valueOf(first), Integer.valueOf(second));
+					}
+					catch (NumberFormatException e){
+						System.out.println(e.getMessage());
+						System.out.println("Нельзя указывать строчные символы");
+					} catch (UserException e) {
+						System.out.println(e.getMessage());
+						System.out.println("please enter two args");
+					}
 				}
 				
 				System.out.println("Result :"+calc.getResult());

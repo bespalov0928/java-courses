@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class ClinicTest {
 
     @Test
-    public void addClient() {
+    public void addClient() throws Exception{
         Client[] expected = new Client[3];
         Client[] actual = new Client[3];
 
@@ -31,9 +31,28 @@ public class ClinicTest {
         }
         /*Assert.assertEquals(expected, actual);*/
     }
+/*    @Test(expected = UserException.class)
+    public void addException() throws Exception{
+        Client[] expected = new Client[3];
+        Client[] actual = new Client[3];
 
+        Client client = new Client("client", new Cat("cat"));
+        Client client1 = new Client("client1", new Cat("cat1"));
+        Client client2 = new Client("client2", new Cat("cat2"));
+        expected[0] = client;
+        expected[1] = client1;
+        expected[2] = client2;
+
+        Clinic clinic = new Clinic(3);
+        clinic.addClient(0, new Client("client", new Cat("cat")));
+        clinic.addClient(1, new Client("client1", new Cat("cat1")));
+        clinic.addClient(2, new Client("client2", new Cat("cat2")));
+
+        //actual = clinic.show();
+
+    }*/
     @Test
-    public void findClientsByClientName() {
+    public void findClientsByClientName() throws Exception{
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
@@ -44,7 +63,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void findClientsByPetName() {
+    public void findClientsByPetName() throws Exception{
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
@@ -55,7 +74,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void editC() {
+    public void editC()throws Exception {
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
@@ -66,7 +85,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void editP() {
+    public void editP() throws Exception{
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
@@ -78,7 +97,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void delC() {
+    public void delC() throws Exception{
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
@@ -89,7 +108,7 @@ public class ClinicTest {
     }
 
     @Test
-    public void delP() {
+    public void delP() throws Exception{
         Clinic clinic = new Clinic(3);
         clinic.addClient(0, new Client("client", new Cat("cat")));
         clinic.addClient(1, new Client("client1", new Cat("cat1")));
