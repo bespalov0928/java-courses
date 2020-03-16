@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 public class ClinicRunner {
     public static void main(String[] arg) throws UserException {
-        final Clinic clinic = new Clinic(10);
-        clinic.addClient(0, new Client("Brown", new Cat("Digy")));
+//        final Clinic clinic = new Clinic(10);
+        final Clinic clinic = new Clinic();
+        clinic.addClient(new Client("Brown", new Cat("Digy")));
 
-        clinic.addClient(1, new Client("Nick", new Dog(
+        clinic.addClient(new Client("Nick", new Dog(
                 new Animal("Sparky"))
         ));
 
-        clinic.addClient(2, new Client("Ann",
+        clinic.addClient(new Client("Ann",
                         new CatDog(
                                 new Cat("Tom"), new Dog(new Animal("Piccy"))
                         )
@@ -30,14 +31,16 @@ public class ClinicRunner {
                 String operator = reader.next();
                 if (operator.equals("add")) {
                     try {
+/*
                         System.out.println("Enter position client");
                         String pos = reader.next();
+*/
                         System.out.println("Enter name client");
                         String nameClient = reader.next();
                         System.out.println("Enter name pet");
                         String namePet = reader.next();
-                        Client client = new Client(pos, new Cat(namePet));
-                        clinic.addClient(Integer.valueOf(pos), client);
+                        Client client = new Client(nameClient, new Cat(namePet));
+                        clinic.addClient(client);
                     } catch (NumberFormatException e) {
                         System.out.println(e.getMessage());
                         System.out.println("параметр может быть только числом");
@@ -52,22 +55,29 @@ public class ClinicRunner {
                     clinic.findClientsByPetName(name);
                 } else if (operator.equals("editC")) {
                     try {
-                        System.out.println("Enter position client");
-                        Integer position = Integer.valueOf(reader.next());
+                        /*System.out.println("Enter position client");
+                        Integer position = Integer.valueOf(reader.next());*/
+                        System.out.println("Enter name find client");
+                        String nameFind = reader.next();
                         System.out.println("Enter name client");
                         String nameClient = reader.next();
-                        clinic.editC(position, nameClient);
+                        //clinic.editC(position, nameClient);
+                        clinic.editC(nameFind, nameClient);
                     } catch (NumberFormatException e) {
                         System.out.println(e.getMessage());
                         System.out.println("параметр может быть только числом");
                     }
                 } else if (operator.equals("editP")) {
                     try {
+/*
                         System.out.println("Enter position pet");
                         Integer position = Integer.valueOf(reader.next());
+*/
+                        System.out.println("Enter name find pet");
+                        String nameFind = reader.next();
                         System.out.println("Enter name pet");
                         String namePet = reader.next();
-                        clinic.editP(position, namePet);
+                        clinic.editP(nameFind, namePet);
                     } catch (NumberFormatException e) {
                         System.out.println(e.getMessage());
                         System.out.println("параметр может быть только числом");
@@ -96,7 +106,11 @@ public class ClinicRunner {
                         System.out.println("параметр может быть только числом");
                     }
                 } else if (operator.equals("show")) {
-                    clinic.show();
+                    try {
+                        clinic.show();
+                    } catch (UserException e){
+                        System.out.println(e.getMessage());
+                    }
 
                 }
                 System.out.println("Exit: yes/no");

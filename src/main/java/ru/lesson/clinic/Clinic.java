@@ -1,31 +1,46 @@
 package ru.lesson.clinic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Clinic{
-	/*список клиентов*/
-	private final Client[] clients;
-	private String clientName;
-	private Client clientFind;
-	private Pet petFind;
-	private String petName;
+public class Clinic {
+    /*список клиентов*/
+//	private final Client[] clients;
+    private String clientName;
+    private Set<Client> clients = new HashSet<Client>();
+    private Client clientFind;
+    private Pet petFind;
+    private String petName;
 	
-	public Clinic(final int size){
+/*	public Clinic(final int size){
 		this.clients = new Client[size];
-	}
-	
-	/*добавить клиента*/
-	public void addClient(final int position, final Client client) throws UserException{
-		this.clients[position] = client;
-	}
-	
-	
-	public Client findClientsByClientName(final String name){
-		
-		System.out.println(clients.length);
+	}*/
+
+    /*добавить клиента*/
+    public void addClient_old(final int position, final Client client) throws UserException {
+        this.clients.add(client);
+    }
+
+    public void addClient(final Client client) throws UserException {
+        this.clients.add(client);
+
+    }
+
+
+    public Client findClientsByClientName(final String name) {
+
+        clientFind = null;
+        String clientName = "не найден клиент.";
+        for (Client client : this.clients) {
+            if (client.getNameClient().equals(name)) {
+                clientName = client.getNameClient();
+                clientFind = client;
+                break;
+            }
+        }
+        System.out.println(clientName);
+        return clientFind;
+
+/*		System.out.println(clients.length);
 		for(int i = 0; i<clients.length; i++){
 			if(clients[i]==null){
 				break;
@@ -40,14 +55,27 @@ public class Clinic{
 				clientFind = clients[i];
 				//break;
 			}
-		}
-		return clientFind;
-		/*реализовать*/
-		//return new Client[]{};
-	}
-	public Client findClientsByPetName(final String name){
-		
-		System.out.println(clients.length);
+		}*/
+
+        /*реализовать*/
+        //return new Client[]{};
+    }
+
+    public Client findClientsByPetName(final String name) {
+
+        clientFind = null;
+        String clientName = "не найдено животное.";
+        for (Client client : this.clients) {
+            if (client.getPet().getName().equals(name)) {
+                clientName = client.getPet().getName();
+                clientFind = client;
+                break;
+            }
+        }
+        System.out.println(clientName);
+        return clientFind;
+
+/*		System.out.println(clients.length);
 		for(int i = 0; i<clients.length; i++){
 			if(clients[i]==null){
 				break;
@@ -61,30 +89,57 @@ public class Clinic{
 				//break;
 			}
 		}
-		return clientFind;
-		/*реализовать*/
-		//return new Client[]{};
-	}	
-	
-
-	public void editC(Integer position, String name){
-		clients[position].setNameClient(name);
-	}
-	public void editP(Integer position, String name){
-		petFind = clients[position].getPet();
-		petFind.setName(name);
-	}
+		return clientFind;*/
+        /*реализовать*/
+        //return new Client[]{};
+    }
 
 
-	public void delC_old(Integer pos){
-		List<Client> listOfClient = new ArrayList<Client>();
-		Collections.addAll(listOfClient, clients);
-		listOfClient.remove(pos.intValue());
-		listOfClient.toArray(clients);//new Client[listOfClient.size()]);
-	}
-	public void delC(String name) throws UserException{
+    public void editC_old(Integer position, String name) {
 
-		for (int i = 0; i<clients.length; i++){
+        //clients[position].setNameClient(name);
+    }
+
+    public void editC(String nameFind, String name) {
+        for (Client client : this.clients) {
+            if (client.getNameClient().equals(nameFind)) {
+                client.setNameClient(name);
+                break;
+            }
+        }
+//		clients[position].setNameClient(name);
+    }
+
+    public void editP_old(Integer position, String name) {
+/*		petFind = clients[position].getPet();
+		petFind.setName(name);*/
+    }
+
+    public void editP(String nameFind, String name) {
+        for (Client client : this.clients) {
+            if (client.getPet().getName().equals(nameFind)) {
+                client.getPet().setName(name);
+                break;
+            }
+        }
+    }
+
+
+    public void delC_old(Integer pos) {
+/*        List<Client> listOfClient = new ArrayList<Client>();
+        Collections.addAll(listOfClient, clients);
+        listOfClient.remove(pos.intValue());
+        listOfClient.toArray(clients);//new Client[listOfClient.size()]);*/
+    }
+
+    public void delC(String name) throws UserException {
+        for (Client client : this.clients) {
+            if (client.getNameClient().equals(name)) {
+                this.clients.remove(client);
+                break;
+            }
+        }
+/*		for (int i = 0; i<clients.length; i++){
 			if (clients[i]!=null) {
 				if (clients[i].getNameClient().equals(name)) {
 					clients[i] = null;
@@ -93,25 +148,29 @@ public class Clinic{
 			}else{
 				throw new UserException("null");
 			}
-		}
-	}
-	public void delP(String name) throws UserException{
-		for (int i = 0; i<clients.length; i++){
-			if (clients[i]!=null){
-				petFind = clients[i].getPet();
-				if (petFind.getName().equals(name)) {
-					clients[i] = null;
-					break;
-				}
-			}else {
-				throw new UserException("null");
-			}
-		}
-	}
+		}*/
+    }
+
+    public void delP(String name) throws UserException {
+        for (Client client : this.clients) {
+            if (client.getPet().getName().equals(name)) {
+                client.delPet();
+                break;
+            }
+        }
+    }
 
 
-	public Client[] show(){
-		/*for(int i = 0; i<clients.length; i++){
+    public Set<Client> show() throws UserException {
+        for (Client client : this.clients) {
+            if (client.getPet() != null) {
+                System.out.println("Client:" + client.getNameClient() + " Pet:" + client.getPet().getName());
+            }else{
+                throw new UserException(client.getNameClient()+" домашнего животного нет");
+            }
+        }
+        return this.clients;
+       /*for(int i = 0; i<clients.length; i++){
 			if(clients[i]==null){
 				continue;
 			}
@@ -121,13 +180,16 @@ public class Clinic{
 			petName = petFind.getName();
 			System.out.println("Client:"+clientName+" Pet:"+petName);
 		}*/
+/*
 		System.out.println(Arrays.toString(clients));
 		return this.clients;
-	}
+*/
+    }
 
-	public int clinicLength(){
-		return clients.length;
-	}
+    public int clinicLength() {
+//		return clients.length;
+        return this.clients.size();
+    }
 
 
 }
