@@ -27,7 +27,7 @@ public class ClinicRunner {
             String exit = "";
 
             while (!exit.equals("yes")) {
-                System.out.println("Выберите операцию: add/findC/findP/editC/editP/delC/delP/show");
+                System.out.println("Выберите операцию: add/findC/findP/editC/editP/delC/delP/show/addus/sizeus/showus");
                 String operator = reader.next();
                 if (operator.equals("add")) {
                     try {
@@ -108,14 +108,33 @@ public class ClinicRunner {
                 } else if (operator.equals("show")) {
                     try {
                         clinic.show();
-                    } catch (UserException e){
+                    } catch (UserException e) {
                         System.out.println(e.getMessage());
                     }
 
+                } else if (operator.equals("addus")) {
+                    try {
+                        System.out.println("Enter id user");
+                        String idUser = reader.next();
+                        System.out.println("Enter name user");
+                        String nameUser = reader.next();
+                        User user = new User(idUser, nameUser);
+                        clinic.addUs(user);
+                    } catch (UserException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                } else if (operator.equals("showus")) {
+                    try {
+                        clinic.showUs();
+                    } catch (UserException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
                 System.out.println("Exit: yes/no");
                 exit = reader.next();
             }
+
         } finally {
             reader.close();
         }

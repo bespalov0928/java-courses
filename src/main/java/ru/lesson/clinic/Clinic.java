@@ -6,11 +6,14 @@ public class Clinic {
     /*список клиентов*/
 //	private final Client[] clients;
     private String clientName;
-    private Set<Client> clients = new HashSet<Client>();
+    private LinkedList<Client> clients = new LinkedList<Client>();
     private Client clientFind;
     private Pet petFind;
     private String petName;
-	
+    private LinkedList<User> users = new LinkedList<User>();
+
+
+
 /*	public Clinic(final int size){
 		this.clients = new Client[size];
 	}*/
@@ -161,7 +164,7 @@ public class Clinic {
     }
 
 
-    public Set<Client> show() throws UserException {
+    public LinkedList<Client> show() throws UserException {
         for (Client client : this.clients) {
             if (client.getPet() != null) {
                 System.out.println("Client:" + client.getNameClient() + " Pet:" + client.getPet().getName());
@@ -185,6 +188,32 @@ public class Clinic {
 		return this.clients;
 */
     }
+
+    public void addUs(final User user) throws UserException{
+        this.users.add(user);
+    }
+
+    public LinkedList<User> showUs() throws UserException {
+        for (User user : this.users) {
+                System.out.println("Id:" + user.getId() + " Name:" + user.getName());
+        }
+        return this.users;
+       /*for(int i = 0; i<clients.length; i++){
+			if(clients[i]==null){
+				continue;
+			}
+			clientName = clients[i].getNameClient();
+			System.out.println(clients[i].getNameClient());
+			petFind = clients[i].getPet();
+			petName = petFind.getName();
+			System.out.println("Client:"+clientName+" Pet:"+petName);
+		}*/
+/*
+		System.out.println(Arrays.toString(clients));
+		return this.clients;
+*/
+    }
+
 
     public int clinicLength() {
 //		return clients.length;
